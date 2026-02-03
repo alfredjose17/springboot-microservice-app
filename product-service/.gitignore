@@ -1,0 +1,61 @@
+############################
+# Java / Build outputs
+############################
+*.class
+/target/
+/build/
+
+############################
+# Maven / Gradle wrappers
+############################
+!.mvn/wrapper/maven-wrapper.jar
+!gradle/wrapper/gradle-wrapper.jar
+
+############################
+# IntelliJ IDEA
+############################
+.idea/
+*.iml
+out/
+
+############################
+# VS Code (optional)
+############################
+.vscode/
+
+############################
+# OS files
+############################
+.DS_Store
+Thumbs.db
+
+############################
+# Docker
+############################
+# Local-only overrides
+docker-compose.override.yml
+
+# Docker volumes / runtime data
+docker-data/
+volumes/
+data/
+
+############################
+# Spring Boot logs
+############################
+logs/
+*.log
+
+############################
+# Environment variables
+############################
+.env
+.env.*
+!.env.example
+
+############################
+# Coverage / reports
+############################
+coverage/
+jacoco/
+reports/
