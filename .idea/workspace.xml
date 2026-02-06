@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8c813acf-9f7e-47da-9e25-9a1decc1cfb6" name="Changes" comment="Adding order service">
-      <change afterPath="$PROJECT_DIR$/inventory-service/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inventory-service/mysql/init.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inventory-service/src/main/java/com/microservices/inventory/controller/InventoryController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inventory-service/src/main/java/com/microservices/inventory/model/Inventory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inventory-service/src/main/java/com/microservices/inventory/repository/InventoryRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inventory-service/src/main/java/com/microservices/inventory/service/InventoryService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inventory-service/src/main/resources/db/migration/V1__init.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inventory-service/src/main/resources/db/migration/V2__add_inventory.sql" afterDir="false" />
+    <list default="true" id="8c813acf-9f7e-47da-9e25-9a1decc1cfb6" name="Changes" comment="Adding inventory service">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +82,7 @@
       <updated>1769963824566</updated>
       <workItem from="1769963828095" duration="25000" />
       <workItem from="1770169606711" duration="2073000" />
-      <workItem from="1770249907114" duration="568000" />
+      <workItem from="1770249907114" duration="1476000" />
     </task>
     <task id="LOCAL-00001" summary="Adding order service">
       <option name="closed" value="true" />
@@ -100,7 +92,15 @@
       <option name="project" value="LOCAL" />
       <updated>1770170414589</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Adding inventory service">
+      <option name="closed" value="true" />
+      <created>1770250674989</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1770250674989</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -108,6 +108,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Adding order service" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding order service" />
+    <MESSAGE value="Adding inventory service" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding inventory service" />
   </component>
 </project>
