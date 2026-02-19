@@ -40,7 +40,7 @@ High‑level building blocks:
 * **📣 Notification Service**
 
     * Consumes order‑related events from **Kafka**.
-    * Sends notifications email to customers.
+    * Sends notification email to customers.
 
 * **🗂 Eureka Server**
 
