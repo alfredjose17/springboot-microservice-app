@@ -40,7 +40,7 @@ High‑level building blocks:
 * **📣 Notification Service**
 
     * Consumes order‑related events from **Kafka**.
-    * Sends notifications (e.g., email) to customers.
+    * Sends notifications email to customers.
 
 * **🗂 Eureka Server**
 
@@ -52,14 +52,13 @@ High‑level building blocks:
 
 * **🐳 Containerization**
 
-    * Docker images for all services (see `docker` directory).
+    * Docker compose for all services.
 
 ## 📁 Project Structure
 
 ```text
 springboot-microservice-app/
 ├── api-gateway/           # 🌐 Spring Cloud Gateway service
-├── docker/                # 🐳 Dockerfiles and infra configuration for services
 ├── inventory-service/     # 📦 Inventory microservice (MySQL)
 ├── notification-service/  # 📣 Notification microservice (Kafka consumer)
 ├── order-service/         # 📦 Order microservice (MySQL, Kafka, Resilience4j)
@@ -134,7 +133,3 @@ Repeat for other services. ✅ This will typically start the service with its da
 * 🔒 Harden security and integrate Auth Server fully across services.
 * 📊 Extend observability dashboards with business‑level metrics (orders created, failed payments, etc.).
 * 🏗 Parent Maven project (`pom.xml`) for multi-module management.
-
-## 📄 License
-
-Specify your project’s license here (e.g., MIT, Apache‑2.0) and add a LICENSE file to the root of the repository.
