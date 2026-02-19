@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8c813acf-9f7e-47da-9e25-9a1decc1cfb6" name="Changes" comment="Adding circuit breaker to API gateway and order service" />
+    <list default="true" id="8c813acf-9f7e-47da-9e25-9a1decc1cfb6" name="Changes" comment="Adding Notification Service and Kafka Event Driven Architecture" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -86,6 +86,7 @@
       <workItem from="1770429717021" duration="137000" />
       <workItem from="1770925143594" duration="907000" />
       <workItem from="1771014823579" duration="65000" />
+      <workItem from="1771475838760" duration="337000" />
     </task>
     <task id="LOCAL-00001" summary="Adding order service">
       <option name="closed" value="true" />
@@ -143,7 +144,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771014879259</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Adding Notification Service and Kafka Event Driven Architecture">
+      <option name="closed" value="true" />
+      <created>1771476108656</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1771476108656</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -157,6 +166,7 @@
     <MESSAGE value="Adding security for API gateway using Keycloak" />
     <MESSAGE value="Adding OpenAPI documentation for microservices and API gateway" />
     <MESSAGE value="Adding circuit breaker to API gateway and order service" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding circuit breaker to API gateway and order service" />
+    <MESSAGE value="Adding Notification Service and Kafka Event Driven Architecture" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding Notification Service and Kafka Event Driven Architecture" />
   </component>
 </project>
