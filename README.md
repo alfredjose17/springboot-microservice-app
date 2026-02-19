@@ -4,6 +4,8 @@ This repository contains a **Spring Boot microservices** application that demons
 
 ## 🏗 Architecture
 
+![Architecture Diagram](architecture.png)
+
 The system is composed of several Spring Boot services and supporting infrastructure (databases, Kafka, observability stack), all containerized with Docker.
 
 High‑level building blocks:
@@ -77,8 +79,8 @@ springboot-microservice-app/
 
 ## 🛠 Prerequisites
 
-* ☑ Java 17 or later
-* ☑ Maven (for individual services)
+* ☑ Java 21
+* ☑ Maven
 * ☑ Docker & Docker Compose
 
 ## 🏃‍♂️ Getting Started (Local with Docker Compose)
