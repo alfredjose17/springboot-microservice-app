@@ -5,12 +5,49 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c813acf-9f7e-47da-9e25-9a1decc1cfb6" name="Changes" comment="Adding architecture diagram">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/docker/grafana/dashboard.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/docker/grafana/datasource.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/docker/keycloak/realms/realm-export.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/docker/prometheus/prometheus.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/docker/tempo/tempo.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-service/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-service/mysql/init.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/src/main/java/com/microservices/notification/NotificationServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/java/com/microservices/notification/NotificationServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/src/main/java/com/microservices/order/event/OrderPlacedEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/docker/mysql/init.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/microservices/order/event/OrderPlacedEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/microservices/order/event/OrderPlacedEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/resources/logback-spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/resources/logback-spring.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/test/java/com/microservices/order/OrderServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/test/java/com/microservices/order/OrderServiceApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/test/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/test/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -44,6 +81,21 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Maven.notification-service [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.notification-service [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.notification-service [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.notification-service [validate].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.notification-service [verify].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.order-service [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.order-service [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.order-service [validate].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.product-service [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.product-service [test].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.springboot-microservices [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.springboot-microservices [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.springboot-microservices [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.springboot-microservices [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.springboot-microservices [validate].executor&quot;: &quot;Run&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -51,21 +103,48 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.ProductServiceApplication.executor&quot;: &quot;Debug&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Projects/Java/Microservices&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Projects/Java/springboot-microservices&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
     &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Projects\Java\springboot-microservices\notification-service" />
+      <recent name="D:\Projects\Java\springboot-microservices\notification-service\src\main\resources" />
+      <recent name="D:\Projects\Java\springboot-microservices" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean install" />
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Microservices" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Microservices" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -185,6 +264,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Adding order service" />

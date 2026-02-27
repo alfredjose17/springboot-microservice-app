@@ -128,8 +128,8 @@ Repeat for other services. ✅ This will typically start the service with its da
 
 ## 🌟 Future Scope
 
-* 🐳 Kubernetes deployment manifests and full cluster setup.
-* ⚙️ CI/CD pipelines using GitHub Actions to automatically build and deploy images.
-* 🔒 Harden security and integrate Auth Server fully across services.
-* 📊 Extend observability dashboards with business‑level metrics (orders created, failed payments, etc.).
-* 🏗 Parent Maven project (`pom.xml`) for multi-module management.
+* [x]🏗 Parent Maven project (`pom.xml`) for multi-module management.
+* [ ]🐳 Kubernetes deployment manifests and full cluster setup.
+* [ ]⚙️ CI/CD pipelines using GitHub Actions to automatically build and deploy images.
+* [ ]🔒 Harden security and integrate Auth Server fully across services.
+* [ ]📊 Extend observability dashboards with business‑level metrics (orders created, failed payments, etc.).
