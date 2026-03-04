@@ -2,6 +2,8 @@
 
 This repository contains a **Spring Boot microservices** application that demonstrates an end‑to‑end e‑commerce–style workflow using synchronous REST calls and asynchronous events. The system is built around independent services for products, orders, inventory management and notifications.
 
+------------------------------------------------------------------------
+
 ## 🏗 Architecture
 
 ![Architecture Diagram](architecture.png)
@@ -42,9 +44,13 @@ High‑level building blocks:
     * Consumes order‑related events from **Kafka**.
     * Sends notification email to customers.
 
-* **🗂 Eureka Server**
+* **☸️ Kubernetes Built-in Service Discovery**
 
-    * Service discovery registry where all microservices and the gateway register.
+    * When deployed to Kubernetes, each microservice is exposed via a **Kubernetes Service** and services communicate using internal DNS.
+    * Kubernetes automatically handles:
+        -   Service registration
+        -   DNS resolution
+        -   Internal load balancing
 
 * **📊 Observability Stack**
 
@@ -52,60 +58,141 @@ High‑level building blocks:
 
 * **🐳 Containerization**
 
-    * Docker compose for all services.
+    * Docker Compose configuration for local development.
+    * Each service is fully containerized using Docker.
+
+* **☸️ Kubernetes Deployment**
+
+    * Production-style container orchestration using Kubernetes.
+    * Separate manifests for infrastructure and application workloads.
+    * Supports deployment on Docker Desktop Kubernetes and cloud clusters.
+    * Enables scalability, rolling updates, and self-healing capabilities.
+
+------------------------------------------------------------------------
 
 ## 📁 Project Structure
 
-```text
 springboot-microservice-app/
-├── api-gateway/           # 🌐 Spring Cloud Gateway service
-├── inventory-service/     # 📦 Inventory microservice (MySQL)
-├── notification-service/  # 📣 Notification microservice (Kafka consumer)
-├── order-service/         # 📦 Order microservice (MySQL, Kafka, Resilience4j)
-├── product-service/       # 🛒 Product microservice (MongoDB)
-└── README.md              # 📄 Project documentation
-```
+    ├── api-gateway/
+    ├── inventory-service/
+    ├── notification-service/
+    ├── order-service/
+    ├── product-service/
+    ├── docker/
+    ├── k8s/
+    │   └── manifests/
+    │       ├── applications/
+    │       └── infrastructure/
+    ├── docker-compose.yml
+    ├── pom.xml
+    └── README.md
+
+------------------------------------------------------------------------
 
 ## ✅ Features
 
-* 🌐 API Gateway with routing, load balancing and resilience patterns.
-* 🏗 Independent microservices with their own databases (polyglot persistence: MongoDB + MySQL).
-* 🔄 Synchronous REST communication for critical calls (order → inventory).
-* ⚡ Asynchronous, event‑driven communication using Apache Kafka for notifications.
-* 🗂 Service discovery using Eureka.
-* 🔒 Security with OAuth2/JWT via a dedicated Auth Server.
-* 📊 Production‑grade observability with OpenTelemetry, Prometheus, Loki, Tempo and Grafana.
+-   🌐 API Gateway with routing & resilience
+-   🧩 Independent microservices (database per service)
+-   🔄 Synchronous REST communication (Order → Inventory)
+-   ⚡ Event-driven architecture with Kafka
+-   ☸️ Kubernetes-native service discovery
+-   🔒 OAuth2/JWT Security
+-   📊 Production-grade observability stack
+-   🐳 Dockerized services
+-   🏗 Multi-module Maven parent project
+
+------------------------------------------------------------------------
 
 ## 🛠 Prerequisites
 
-* ☑ Java 21
-* ☑ Maven
-* ☑ Docker & Docker Compose
+   ### For Local (Docker Compose)
+
+   -   Java 21
+   -   Maven
+   -   Docker & Docker Compose
+
+   ### For Kubernetes
+
+   -   Docker
+   -   kubectl
+   -   Kubernetes cluster (Minikube, Kind, Docker Desktop Kubernetes, or
+       cloud cluster)
+
+------------------------------------------------------------------------
 
 ## 🏃‍♂️ Getting Started (Local with Docker Compose)
 
-Each service contains its own `docker-compose.yml` for local setup.
+### 🐳 Option 1: Run Locally with Docker Compose
 
-1. Clone the repository
+#### 1️⃣ Clone Repository
 
-```bash
+``` bash
 git clone https://github.com/alfredjose17/springboot-microservice-app.git
 cd springboot-microservice-app
 ```
 
-2. Build and start a service (example: Product Service)
+#### 2️⃣ Build All Services
 
-```bash
-cd product-service
+``` bash
 mvn clean install
+```
+
+#### 3️⃣ Start Services
+
+``` bash
 docker compose up -d
 ```
 
-Repeat for other services. ✅ This will typically start the service with its database (if needed) and any dependent infrastructure.
+This starts MySQL, MongoDB, Kafka, microservices, and observability
+stack.
 
-3. Access the service
+------------------------------------------------------------------------
 
-* 🌐 API endpoints are exposed on ports defined in each service's `docker-compose.yml`.
+### ☸️ Option 2: Run on Kubernetes
+
+#### 1️⃣ Enable Kubernetes in Docker Desktop
+
+     1. Open **Docker Desktop**
+     2. Go to **Settings**
+     3. Navigate to **Kubernetes**
+     4. Check ✅ **Enable Kubernetes**
+     5. Click **Apply & Restart**
+
+     Wait until Kubernetes status shows **Running**.
+
+## 2️⃣ Build Docker Images (from root directory)
+
+``` bash
+mvn spring-boot:build-image -DskipTests -DdockerPassword=<docker-password>
+```
+
+## 3️⃣ Deploy Infrastructure
+
+``` bash
+kubectl apply -f k8s/manifests/infrastructure/
+```
+
+## 4️⃣ Deploy Applications
+
+``` bash
+kubectl apply -f k8s/manifests/applications/
+```
+
+## 5️⃣ Verify
+
+``` bash
+kubectl get all
+```
+
+## 6️⃣ Access Gateway
+
+``` bash
+kubectl port-forward service/api-gateway 9000:9000
+```
+
+Access: http://localhost:9000
+
+------------------------------------------------------------------------
 
 ## 🔄 Sample Flow
 
@@ -114,22 +201,27 @@ Repeat for other services. ✅ This will typically start the service with its da
 3. 📣 An order event is emitted to Kafka, consumed by Notification Service, which triggers a notification to the customer.
 4. 📊 Inspect traces, metrics and logs in Grafana/Prometheus/Loki/Tempo to see the full request path across services.
 
+------------------------------------------------------------------------
+
 ## 🧰 Technologies Used
 
-| Area           | Stack                                                         |
-| -------------- | ------------------------------------------------------------- |
-| Core framework | Spring Boot, Spring Web, Spring Data JPA, Spring Data MongoDB |
-| Cloud patterns | Spring Cloud Gateway, Eureka Service Discovery, Resilience4j  |
-| Messaging      | Apache Kafka                                                  |
-| Databases      | MySQL, MongoDB                                                |
-| Security       | Spring Security, OAuth2/JWT (Auth Server)                     |
-| Observability  | OpenTelemetry, Prometheus, Grafana, Loki, Tempo               |
-| Platform       | Docker, Docker Compose                                        |
+  Area               Stack
+  ------------------ ---------------------------------------------------------------
+  Core               Spring Boot, Spring Web, Spring Data JPA, Spring Data MongoDB
+  Cloud              Spring Cloud Gateway, Resilience4j
+  Messaging          Apache Kafka
+  Databases          MySQL, MongoDB
+  Security           Spring Security, OAuth2/JWT
+  Containerization   Docker
+  Orchestration      Kubernetes
+  Observability      OpenTelemetry, Prometheus, Grafana, Loki, Tempo                                      |
+
+------------------------------------------------------------------------
 
 ## 🌟 Future Scope
 
-* [x]🏗 Parent Maven project (`pom.xml`) for multi-module management.
-* [ ]🐳 Kubernetes deployment manifests and full cluster setup.
+* [X]🏗 Parent Maven project (`pom.xml`) for multi-module management.
+* [X]🐳 Kubernetes deployment manifests and full cluster setup.
 * [ ]⚙️ CI/CD pipelines using GitHub Actions to automatically build and deploy images.
 * [ ]🔒 Harden security and integrate Auth Server fully across services.
 * [ ]📊 Extend observability dashboards with business‑level metrics (orders created, failed payments, etc.).
