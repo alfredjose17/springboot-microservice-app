@@ -72,6 +72,7 @@ High‑level building blocks:
 
 ## 📁 Project Structure
 
+```text
 springboot-microservice-app/
     ├── api-gateway/
     ├── inventory-service/
@@ -86,6 +87,7 @@ springboot-microservice-app/
     ├── docker-compose.yml
     ├── pom.xml
     └── README.md
+```
 
 ------------------------------------------------------------------------
 
@@ -205,16 +207,15 @@ Access: http://localhost:9000
 
 ## 🧰 Technologies Used
 
-  Area               Stack
-  ------------------ ---------------------------------------------------------------
-  Core               Spring Boot, Spring Web, Spring Data JPA, Spring Data MongoDB
-  Cloud              Spring Cloud Gateway, Resilience4j
-  Messaging          Apache Kafka
-  Databases          MySQL, MongoDB
-  Security           Spring Security, OAuth2/JWT
-  Containerization   Docker
-  Orchestration      Kubernetes
-  Observability      OpenTelemetry, Prometheus, Grafana, Loki, Tempo                                      |
+| Area           | Stack                                                         |
+| -------------- | ------------------------------------------------------------- |
+| Core framework | Spring Boot, Spring Web, Spring Data JPA, Spring Data MongoDB |
+| Cloud patterns | Spring Cloud Gateway, Kubernetes Service Discovery, Resilience4j  |
+| Messaging      | Apache Kafka                                                  |
+| Databases      | MySQL, MongoDB                                                |
+| Security       | Spring Security, OAuth2/JWT (Auth Server)                     |
+| Observability  | OpenTelemetry, Prometheus, Grafana, Loki, Tempo               |
+| Platform       | Docker, Docker Compose, Kubernetes                                       |                                    |
 
 ------------------------------------------------------------------------
 
