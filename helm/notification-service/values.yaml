@@ -1,0 +1,23 @@
+replicaCount: 1
+
+image:
+  repository: avj17/new-notification-service
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8083
+
+resources: {}
+
+env:
+  lokiUrl: "http://loki.default.svc.cluster.local:3100/loki/api/v1/push"
+  tempoUrl: "http://tempo.default.svc.cluster.local:9411"
+  kafkaBootstrapServers: "broker.default.svc.cluster.local:29092"
+  schemaRegistryUrl: "http://schema-registry.default.svc.cluster.local:8081"
+
+# Mail credentials — provided at deploy time via values-secrets.yaml (never committed)
+mail:
+  username: ""
+  password: ""

@@ -1,0 +1,136 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# keycloak (custom template — toggle with enabled flag)
+# ─────────────────────────────────────────────────────────────────────────────
+keycloak:
+  enabled: true
+
+# ─────────────────────────────────────────────────────────────────────────────
+# bitnami/mongodb
+# ─────────────────────────────────────────────────────────────────────────────
+mongodb:
+  auth:
+    rootUser: "root"
+    rootPassword: "password"
+  persistence:
+    enabled: true
+    size: 1Gi
+
+# ─────────────────────────────────────────────────────────────────────────────
+# prometheus-community/prometheus
+# Service names below assume release name "my-app" — update if release name changes.
+# ─────────────────────────────────────────────────────────────────────────────
+prometheus:
+  server:
+    global:
+      scrape_interval: 15s
+      scrape_timeout: 10s
+      evaluation_interval: 15s
+    persistentVolume:
+      enabled: false
+  alertmanager:
+    enabled: false
+  prometheus-node-exporter:
+    enabled: false
+  kube-state-metrics:
+    enabled: false
+  prometheus-pushgateway:
+    enabled: false
+  serverFiles:
+    prometheus.yml:
+      scrape_configs:
+        - job_name: api-gateway
+          metrics_path: /actuator/prometheus
+          static_configs:
+            - targets: ["my-app-api-gateway:9000"]
+        - job_name: product-service
+          metrics_path: /actuator/prometheus
+          static_configs:
+            - targets: ["my-app-product-service:8080"]
+        - job_name: order-service
+          metrics_path: /actuator/prometheus
+          static_configs:
+            - targets: ["my-app-order-service:8081"]
+        - job_name: inventory-service
+          metrics_path: /actuator/prometheus
+          static_configs:
+            - targets: ["my-app-inventory-service:8082"]
+        - job_name: notification-service
+          metrics_path: /actuator/prometheus
+          static_configs:
+            - targets: ["my-app-notification-service:8083"]
+
+# ─────────────────────────────────────────────────────────────────────────────
+# grafana/grafana
+# Service names assume release name "my-app".
+# ─────────────────────────────────────────────────────────────────────────────
+grafana:
+  adminUser: admin
+  adminPassword: admin
+  grafana.ini:
+    auth.anonymous:
+      enabled: true
+      org_role: Admin
+    auth:
+      disable_login_form: true
+  datasources:
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+        - name: Prometheus
+          type: prometheus
+          url: http://my-app-prometheus-server
+          isDefault: true
+        - name: Loki
+          type: loki
+          url: http://my-app-loki:3100
+        - name: Tempo
+          type: tempo
+          url: http://my-app-tempo:3200
+
+# ─────────────────────────────────────────────────────────────────────────────
+# grafana/loki
+# ─────────────────────────────────────────────────────────────────────────────
+loki:
+  deploymentMode: SingleBinary
+  loki:
+    auth_enabled: false
+    commonConfig:
+      replication_factor: 1
+    storage:
+      type: filesystem
+    useTestSchema: true
+  singleBinary:
+    replicas: 1
+  chunksCache:
+    enabled: false
+  resultsCache:
+    enabled: false
+  read:
+    replicas: 0
+  write:
+    replicas: 0
+  backend:
+    replicas: 0
+  lokiCanary:
+    enabled: false
+  gateway:
+    enabled: false
+  test:
+    enabled: false
+
+# ─────────────────────────────────────────────────────────────────────────────
+# grafana/tempo
+# ─────────────────────────────────────────────────────────────────────────────
+tempo:
+  tempo:
+    storage:
+      trace:
+        backend: local
+        local:
+          path: /tmp/tempo/blocks
+  persistence:
+    enabled: true
+    size: 1Gi
+  receivers:
+    zipkin:
+      endpoint: 0.0.0.0:9411

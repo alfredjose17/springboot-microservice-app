@@ -1,0 +1,18 @@
+replicaCount: 1
+
+image:
+  repository: avj17/new-product-service
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8080
+
+resources: {}
+
+env:
+  # In production replace credentials in the URI with a K8s Secret reference
+  mongodbUri: "mongodb://root:password@mongodb.default.svc.cluster.local:27017/product-service?authSource=admin"
+  lokiUrl: "http://loki.default.svc.cluster.local:3100/loki/api/v1/push"
+  tempoUrl: "http://tempo.default.svc.cluster.local:9411"

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "order-service.fullname" . }}-config
+  labels:
+    {{- include "order-service.labels" . | nindent 4 }}
+data:
+  SPRING_KAFKA_BOOTSTRAP-SERVERS: {{ .Values.env.kafkaBootstrapServers | quote }}
+  SPRING_DATASOURCE_URL: {{ .Values.env.datasourceUrl | quote }}
+  SPRING_DATASOURCE_USERNAME: {{ .Values.env.datasourceUsername | quote }}
+  SPRING_DATASOURCE_PASSWORD: {{ .Values.env.datasourcePassword | quote }}
+  SPRING_KAFKA_PRODUCER_PROPERTIES_SCHEMA_REGISTRY_URL: {{ .Values.env.schemaRegistryUrl | quote }}
+  INVENTORY_SERVICE_URL: {{ .Values.env.inventoryServiceUrl | quote }}
+  LOKI_URL: {{ .Values.env.lokiUrl | quote }}
+  MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: {{ .Values.env.tempoUrl | quote }}
+  JAVA_TOOL_OPTIONS: "-Xms128m -Xmx256m -XX:MaxMetaspaceSize=128m"

@@ -1,0 +1,140 @@
+# =============================================================================
+# Umbrella values — every sub-chart is namespaced by its chart name.
+# Service name conventions with release name "my-app":
+#   Custom templates (no prefix) : mysql, keycloak, broker, schema-registry
+#   Community charts (my-app-*)  : my-app-mongodb, my-app-loki, my-app-tempo, my-app-prometheus-server
+#   Service sub-charts (my-app-*): my-app-api-gateway, my-app-order-service, etc.
+# =============================================================================
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Microservices
+# ─────────────────────────────────────────────────────────────────────────────
+api-gateway:
+  replicaCount: 1
+  image:
+    repository: avj17/new-api-gateway
+    tag: latest
+  env:
+    keycloakIssuerUri: "http://keycloak:8080/realms/spring-microservices-security-realm"
+    lokiUrl: "http://my-app-loki:3100/loki/api/v1/push"
+    tempoUrl: "http://my-app-tempo:9411"
+    productServiceUrl: "http://my-app-product-service:8080"
+    orderServiceUrl: "http://my-app-order-service:8081"
+    inventoryServiceUrl: "http://my-app-inventory-service:8082"
+
+order-service:
+  replicaCount: 1
+  image:
+    repository: avj17/new-order-service
+    tag: latest
+  env:
+    lokiUrl: "http://my-app-loki:3100/loki/api/v1/push"
+    tempoUrl: "http://my-app-tempo:9411"
+    kafkaBootstrapServers: "broker:29092"
+    schemaRegistryUrl: "http://schema-registry:8081"
+    datasourceUrl: "jdbc:mysql://mysql:3306/order_service"
+    datasourceUsername: "root"
+    datasourcePassword: "mysql"
+    inventoryServiceUrl: "http://my-app-inventory-service:8082"
+
+product-service:
+  replicaCount: 1
+  image:
+    repository: avj17/new-product-service
+    tag: latest
+  env:
+    mongodbUri: "mongodb://root:password@my-app-mongodb:27017/product-service?authSource=admin"
+    lokiUrl: "http://my-app-loki:3100/loki/api/v1/push"
+    tempoUrl: "http://my-app-tempo:9411"
+
+inventory-service:
+  replicaCount: 1
+  image:
+    repository: avj17/new-inventory-service
+    tag: latest
+  env:
+    lokiUrl: "http://my-app-loki:3100/loki/api/v1/push"
+    tempoUrl: "http://my-app-tempo:9411"
+    datasourceUrl: "jdbc:mysql://mysql:3306/inventory_service"
+    datasourceUsername: "root"
+    datasourcePassword: "mysql"
+
+notification-service:
+  replicaCount: 1
+  image:
+    repository: avj17/new-notification-service
+    tag: latest
+  env:
+    lokiUrl: "http://my-app-loki:3100/loki/api/v1/push"
+    tempoUrl: "http://my-app-tempo:9411"
+    kafkaBootstrapServers: "broker:29092"
+    schemaRegistryUrl: "http://schema-registry:8081"
+  mail:
+    username: ""
+    password: ""
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Infrastructure
+# ─────────────────────────────────────────────────────────────────────────────
+infrastructure:
+  keycloak:
+    enabled: true
+
+  mongodb:
+    auth:
+      rootUser: "root"
+      rootPassword: "password"
+
+  prometheus:
+    alertmanager:
+      enabled: false
+    prometheus-node-exporter:
+      enabled: false
+    kube-state-metrics:
+      enabled: false
+    prometheus-pushgateway:
+      enabled: false
+    server:
+      global:
+        scrape_interval: 15s
+        scrape_timeout: 10s
+        evaluation_interval: 15s
+      persistentVolume:
+        enabled: false
+
+  grafana:
+    adminUser: admin
+    adminPassword: admin
+
+  loki:
+    deploymentMode: SingleBinary
+    loki:
+      auth_enabled: false
+      commonConfig:
+        replication_factor: 1
+      storage:
+        type: filesystem
+      useTestSchema: true
+    singleBinary:
+      replicas: 1
+    chunksCache:
+      enabled: false
+    resultsCache:
+      enabled: false
+    read:
+      replicas: 0
+    write:
+      replicas: 0
+    backend:
+      replicas: 0
+    lokiCanary:
+      enabled: false
+    gateway:
+      enabled: false
+    test:
+      enabled: false
+
+  tempo:
+    persistence:
+      enabled: true
+      size: 1Gi

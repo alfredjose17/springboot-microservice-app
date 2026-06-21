@@ -1,0 +1,20 @@
+replicaCount: 1
+
+image:
+  repository: avj17/new-api-gateway
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 9000
+
+resources: {}
+
+env:
+  keycloakIssuerUri: "http://keycloak.default.svc.cluster.local:8080/realms/spring-microservices-security-realm"
+  lokiUrl: "http://loki.default.svc.cluster.local:3100/loki/api/v1/push"
+  tempoUrl: "http://tempo.default.svc.cluster.local:9411"
+  productServiceUrl: "http://product-service.default.svc.cluster.local:8080"
+  orderServiceUrl: "http://order-service.default.svc.cluster.local:8081"
+  inventoryServiceUrl: "http://inventory-service.default.svc.cluster.local:8082"

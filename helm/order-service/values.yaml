@@ -1,0 +1,23 @@
+replicaCount: 1
+
+image:
+  repository: avj17/new-order-service
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8081
+
+resources: {}
+
+env:
+  lokiUrl: "http://loki.default.svc.cluster.local:3100/loki/api/v1/push"
+  tempoUrl: "http://tempo.default.svc.cluster.local:9411"
+  kafkaBootstrapServers: "broker.default.svc.cluster.local:29092"
+  schemaRegistryUrl: "http://schema-registry.default.svc.cluster.local:8081"
+  datasourceUrl: "jdbc:mysql://mysql.default.svc.cluster.local:3306/order_service"
+  # In production replace with a K8s Secret reference
+  datasourceUsername: "root"
+  datasourcePassword: "mysql"
+  inventoryServiceUrl: "http://inventory-service.default.svc.cluster.local:8082"

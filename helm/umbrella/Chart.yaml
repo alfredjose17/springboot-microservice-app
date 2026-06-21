@@ -1,0 +1,33 @@
+apiVersion: v2
+name: microservice-app
+description: >
+  Umbrella chart — deploys all five Spring Boot microservices plus
+  the full infrastructure stack with a single helm install.
+type: application
+version: 0.1.0
+appVersion: "0.0.1-SNAPSHOT"
+
+dependencies:
+  - name: api-gateway
+    version: "0.1.0"
+    repository: "file://../api-gateway"
+
+  - name: order-service
+    version: "0.1.0"
+    repository: "file://../order-service"
+
+  - name: product-service
+    version: "0.1.0"
+    repository: "file://../product-service"
+
+  - name: inventory-service
+    version: "0.1.0"
+    repository: "file://../inventory-service"
+
+  - name: notification-service
+    version: "0.1.0"
+    repository: "file://../notification-service"
+
+  - name: infrastructure
+    version: "0.1.0"
+    repository: "file://../infrastructure"

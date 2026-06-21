@@ -1,0 +1,92 @@
+{{- if .Values.keycloak.enabled }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: keycloak-secrets
+type: Opaque
+data:
+  KEYCLOAK_ADMIN_PASSWORD: YWRtaW4=   # admin
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: keycloak-realm-config
+data:
+  realm.json: |
+{{ .Files.Get "files/realm-export.json" | indent 4 }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak
+  labels:
+    app: keycloak
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keycloak
+  template:
+    metadata:
+      labels:
+        app: keycloak
+    spec:
+      containers:
+        - name: keycloak
+          image: quay.io/keycloak/keycloak:24.0.1
+          args: ["start-dev", "--import-realm"]
+          ports:
+            - containerPort: 8080
+          env:
+            - name: KEYCLOAK_ADMIN
+              value: "admin"
+            - name: KEYCLOAK_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-secrets
+                  key: KEYCLOAK_ADMIN_PASSWORD
+            - name: KC_HOSTNAME_STRICT
+              value: "false"
+            - name: KC_HOSTNAME_STRICT_HTTPS
+              value: "false"
+            - name: KC_HTTP_ENABLED
+              value: "true"
+            - name: KC_HOSTNAME_URL
+              value: "http://keycloak:8080"
+            - name: KC_HOSTNAME_ADMIN_URL
+              value: "http://keycloak:8080"
+            - name: JAVA_OPTS_APPEND
+              value: "-Xms256m -Xmx512m -XX:MaxMetaspaceSize=128m"
+          volumeMounts:
+            - name: realm-config
+              mountPath: /opt/keycloak/data/import
+              readOnly: true
+          readinessProbe:
+            httpGet:
+              path: /realms/spring-microservices-security-realm
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /realms/master
+              port: 8080
+            initialDelaySeconds: 90
+            periodSeconds: 15
+      volumes:
+        - name: realm-config
+          configMap:
+            name: keycloak-realm-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: keycloak
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: keycloak
+{{- end }}

@@ -1,0 +1,20 @@
+replicaCount: 1
+
+image:
+  repository: avj17/new-inventory-service
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8082
+
+resources: {}
+
+env:
+  lokiUrl: "http://loki.default.svc.cluster.local:3100/loki/api/v1/push"
+  tempoUrl: "http://tempo.default.svc.cluster.local:9411"
+  datasourceUrl: "jdbc:mysql://mysql.default.svc.cluster.local:3306/inventory_service"
+  # In production replace with a K8s Secret reference
+  datasourceUsername: "root"
+  datasourcePassword: "mysql"
